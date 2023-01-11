@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public int score { get; private set; }
     public bool isPause { get; private set; }
+    public GameObject pausePanel;
 
     private void Update()
     {
@@ -32,8 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchPause()
     {
-        isPause = !isPause;
-        if (isPause)
+        if (!isPause)
             Pause();
         else
             Unpause();
@@ -41,11 +41,21 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
+        isPause = true;
         Time.timeScale = 0f;
+        pausePanel.SetActive(true);
     }
 
     public void Unpause()
     {
+        isPause = false;
         Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+    }
+
+    public void EndGame()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;    // 유니티에서 테스트 할 때
+        Application.Quit();                                 // 빌드한 후에 어플에서
     }
 }

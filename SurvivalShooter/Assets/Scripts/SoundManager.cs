@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource effectsPlayer;
     public float bgmVolume = 1f;
     public float effectsVolume = 1f;
-   // public bool soundsOn = true;
+    // public bool soundsOn = true;
+    public Slider bgmSlider;
+    public Slider effectsSlider;
 
     private void Awake()
     {
@@ -41,16 +44,16 @@ public class SoundManager : MonoBehaviour
         effectsPlayer.PlayOneShot(effectsDic[clipName], effectsVolume);
     }
 
-    public void SetBgmVolume(float volume)
+    public void SetBgmVolume(Slider bgmSlider)
     {
-        bgmVolume = volume;
-        bgmPlayer.volume = volume;
+        bgmVolume = bgmSlider.value;
+        bgmPlayer.volume = bgmSlider.value;
     }
 
-    public void SetEffectsVolume(float volume)
+    public void SetEffectsVolume(Slider effectsSlider)
     {
-        effectsVolume = volume;
-        effectsPlayer.volume = volume;
+        effectsVolume = effectsSlider.value;
+        effectsPlayer.volume = effectsSlider.value;
     }
 
     public void SoundsOn(bool on)
